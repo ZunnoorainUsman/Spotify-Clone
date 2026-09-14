@@ -1,4 +1,3 @@
-console.log("lets write js");
 
 let currenSong = new Audio();
 let songs;
@@ -19,7 +18,7 @@ function secondsToMinutesSeconds(seconds) {
 async function getSongs() {
     let a = await fetch("http://127.0.0.1:3000/songs");
     let responce = await a.text();
-    console.log(responce)
+    // console.log(responce)
 
     let div = document.createElement("div");
     div.innerHTML = responce;
@@ -48,7 +47,7 @@ async function main() {
 
     let songs = await getSongs();
     playMusic(songs[0], true);
-    console.log(songs)
+    // console.log(songs)
 
     let songUL = document.querySelector(".songlist").getElementsByTagName("ul")[0];
     for (const song of songs) {
@@ -65,7 +64,7 @@ async function main() {
     }
     Array.from(document.querySelector(".songlist").getElementsByTagName("li")).forEach(e => {
         e.addEventListener("click", (element) => {
-            console.log(e.querySelector(".info").firstElementChild.innerHTML)
+            // console.log(e.querySelector(".info").firstElementChild.innerHTML)
             playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim())
         })
 
@@ -108,9 +107,9 @@ async function main() {
 
     //event 4 previous and next
     previous.addEventListener("click", () => {
-        console.log(currenSong.src)
+        // console.log(currenSong.src)
         let index = songs.indexOf(currenSong.src.split("/songs%").slice(-1)[0])
-        console.log(index)
+        // console.log(index)
         if ((index - 1) >= 0) {
             playMusic(songs[index - 1])
         }
@@ -118,14 +117,19 @@ async function main() {
     })
     next.addEventListener("click", () => {
         currenSong.pause()
-        console.log(currenSong.src)
+        // console.log(currenSong.src)
         
         let index = songs.indexOf(currenSong.src.split("/songs%").slice(-1)[0])
-        console.log(index)
+        // console.log(index)
         
         if ((index + 1) < songs.length-1) {
             playMusic(songs[index + 1])
         }
+    })
+    //event to volume
+    document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change",(e)=>{
+        console.log("Setting volume to: "+ e.target.value+"/100")
+        currenSong.volume = parseInt(e.target.value)/100
     })
 }
 main()
