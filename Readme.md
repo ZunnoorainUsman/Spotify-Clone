@@ -67,3 +67,14 @@ Suggestions and feedback are always welcome.
 ## 📄 License
 
 This project is for educational and learning purposes.
+## ⚠️ Audio Files Not Included
+
+The audio files used during development are not included in this repository due to file size and copyright considerations.
+
+To run the project locally:
+
+1. Create a `songs` folder in the project root.
+2. Add your own `.mp3` audio files to the folder.
+3. Update `info.json` if necessary to match your song files.
+
+The application logic and music player functionality remain fully implemented and can be tested using any audio files of your choice.
